@@ -1,0 +1,6 @@
+.JourneyCard-container {
+    margin-top: 20px;
+    width: 60%;
+    border: 1px solid black;
+    display: inline-block;
+}
