@@ -5,13 +5,12 @@
 }
 
 .Nav-container {
-    background: green;
+    background: rgba(149, 193, 76, 1);
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 50px;
-
 }
 
 .Nav-logo {

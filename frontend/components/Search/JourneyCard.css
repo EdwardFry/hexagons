@@ -1,6 +1,48 @@
 .JourneyCard-container {
-    margin-top: 20px;
-    width: 60%;
-    border: 1px solid black;
-    display: inline-block;
+    padding-top: 50px;
+}
+
+.JourneyCard-container div{
+    -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+    width:700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.JourneyCard-info-container {
+    width: 700px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background: white;
+}
+
+.JourneyCard-container p {
+    flex: 1;
+}
+
+.JourneyCard-container button {
+    width: 100px;
+    background: lightgray;
+    border: none;
+    height: 100%;
+    transition: all 0.4s ease 0s;
+}
+
+.JourneyCard-container button:hover {
+    background: grey;
+    cursor: pointer;
+}
+
+.JourneyCard-changes-container {
+    background: white;
+    width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.JourneyCard-changes-container ul{
+    list-style: none;
 }
