@@ -26,6 +26,15 @@ def kiwi():
 
     return jsonify([output["data"][0]["route"][0]["flyTo"], output["data"][0]["route"][0]["flyFrom"]])
 
+# GET http://pavoldrotar.com:5000/cars
+@app.route('/cars')
+def cars():
+    fromPlace = request.args.get('from')
+    toPlace = request.args.get('to')
+
+    distance = getDistance(fromPlace, toPlace)
+    return carbonFootprint('anyCar', distance, 'def')
+
 @app.route('/carbon')
 def carbon():
     try:
