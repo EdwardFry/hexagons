@@ -44,8 +44,26 @@ for i in range(no_legs):
     routes.append((cityTo, cityFrom, cityCodeTo, cityCodeFrom))
 
 
-print(routes)
+# print(routes)
 
 # for i in range(3):
 #     print(output["data"][i]["route"][0]["flyTo"])
 #     print(output["data"][i]["route"][0]["flyFrom"])
+
+
+def trainRoutes(goingFrom, goingTo):
+    response = requests.get('https://api.skypicker.com/flights?fly_from=paris_fr&fly_to=berlin_de&v=3&vehicle_type=train,bus&date_from=29/02/2020&nights_in_dst_from=6&nights_in_dst_to=6&partner=picky')
+    # https: // api.skypicker.com / flights?fly_from = paris_fr & fly_to = berlin_de & v = 3 & vehicle_type = train, bus & date_from = 29 / 02 / 2020 & nights_in_dst_from = 6 & nights_in_dst_to = 6 & partner = picky
+    output = response.json();
+
+    # routes = [item["route"] for item in output['data']]
+    print(output)
+    numberOfRoutes = len(output)
+    print(numberOfRoutes)
+    return (numberOfRoutes >= 1)
+
+def main():
+    print(trainRoutes("London", "Berlin"))
+
+if __name__ == "__main__":
+    main()
