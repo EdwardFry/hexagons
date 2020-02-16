@@ -11,10 +11,17 @@
 
 .Search-sidebar {
     width: 300px;
+    height: 80vh;
     position: fixed;
     right: 0;
-    background: white;
-    -webkit-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
-    -moz-box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
-    box-shadow: 0px 0px 12px 0px rgba(0,0,0,0.75);
+    background: rgba(149, 193, 76, 0.5);
+}
+
+.Search-sidebar div {
+    padding-left: 40px;
+    padding-bottom: 80px;
+}
+
+.Search-total {
+    margin-top: 100px;
 }
