@@ -1,51 +1,55 @@
 import requests
 
-kiwi_get_url = 'https://api.skypicker.com/flights'
-
-response = requests.get(
-    "https://api.skypicker.com/flights?flyFrom=PRG&to=LGW&dateFrom=18/11/2020&dateTo=12/12/2020&partner=picky&v=3")
-
-# print(response.status_code)
-
-output = response.json()
-
-# print(len(output["data"]))
-
-route_lengths=[item["fly_duration"] for item in output["data"]]
-
-# print(route_lengths)
-
-route_lengths_minutes = []
-
-for item in route_lengths:
+def convert(item):
     hours, minutes = item.split(' ')
     hours = int(hours[:-1])
     minutes = int(minutes[:-1])
-    duration = hours*60 + minutes
-    route_lengths_minutes.append(duration)
+    duration = hours * 60 + minutes
+    return duration
 
-# print(route_lengths_minutes)
+def getFlightRoutes(fromPlace, toPlace, date):
 
-min_duration_route_index = route_lengths_minutes.index(min(route_lengths_minutes))
+    fromCountry_response = requests.get("https://api.skypicker.com/locations?term=" + fromPlace + "&location_types=airport&sort=rank")
+    fromCountry_output = fromCountry_response.json()
 
-# print(min(route_lengths_minutes))
-# print(min_duration_route_index)
+    toCountry_response = requests.get("https://api.skypicker.com/locations?term=" + toPlace + "&location_types=airport&sort=rank")
+    toCountry_output = toCountry_response.json()
 
-legs = output["data"][min_duration_route_index]["route"]
-no_legs=len(legs)
+    # Takes the most common airport in that city
+    fromCode = fromCountry_output["locations"][0]["code"]
+    toCode = toCountry_output["locations"][0]["code"]
 
-routes = []
+    response = requests.get("https://api.skypicker.com/flights?flyFrom=" + fromCode + "&to=" + toCode + "&dateFrom=" + date + "&dateTo=" + date + "&partner=picky&v=3")
 
-for i in range(no_legs):
-    cityTo = legs[i]["cityTo"]
-    cityFrom = legs[i]["cityFrom"]
-    cityCodeTo = legs[i]["cityCodeTo"]
-    cityCodeFrom = legs[i]["cityCodeFrom"]
-    routes.append((cityTo, cityFrom, cityCodeTo, cityCodeFrom))
+    output = response.json()
+
+    routes = output['data']
+
+    routes = sorted(routes, key=lambda x: convert(x["fly_duration"]))
 
 
-print(routes)
+    return routes[:min(5, len(routes))]
+
+# print(routes)
 
 # for i in range(3):
 #     print(output["data"][i]["route"][0]["flyTo"])
 #     print(output["data"][i]["route"][0]["flyFrom"])
+
+
+def trainRoutes(goingFrom, goingTo):
+    response = requests.get('https://api.skypicker.com/flights?fly_from=paris_fr&fly_to=berlin_de&v=3&vehicle_type=train,bus&date_from=29/02/2020&nights_in_dst_from=6&nights_in_dst_to=6&partner=picky')
+    output = response.json();
+
+    # numberOfRoutes = len(output)
+    routes = output['data']
+    routes = sorted(routes, key=lambda x: convert(x["fly_duration"]))
+
+    # print(routes)
+    return routes[:min(5, len(routes))]
+
+def main():
+    print(trainRoutes("London", "Berlin"))
+
+if __name__ == "__main__":
+    main()
