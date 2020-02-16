@@ -27,28 +27,7 @@ def getFlightRoutes(fromPlace, toPlace, date):
 
     routes = sorted(routes, key=lambda x: convert(x["fly_duration"]))
 
-    #
-    #
-    #     min_duration_route_index = route_lengths_minutes.index(min(route_lengths_minutes))
-    #
-    #     legs = output["data"][min_duration_route_index]["route"]
-    #     no_legs=len(legs)
-    #
-    #     routes = []
-    #
-    #     for i in range(no_legs):
-    #         cityTo = legs[i]["cityTo"]
-    #         cityFrom = legs[i]["cityFrom"]
-    #         cityCodeTo = legs[i]["cityCodeTo"]
-    #         cityCodeFrom = legs[i]["cityCodeFrom"]
-    #         routes.append((cityFrom, cityTo, cityCodeFrom, cityCodeTo))
-
-
-    #flight_options.append(routes)
-
 
     return routes[:min(5, len(routes))]
 
-f = getFlightRoutes("Prague", "London", "31/05/2020")
-print(f)
 
