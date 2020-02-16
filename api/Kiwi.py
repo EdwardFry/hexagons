@@ -51,16 +51,14 @@ def getGroundRoutes(goingFrom, goingTo, date):
     response = requests.get("https://api.skypicker.com/flights?fly_from=" + fromCode + "&fly_to=" + toCode + "&v=3&vehicle_type=train,bus" + "&date_from=" + date + "&date_to=" + date + "&partner=picky")
     output = response.json();
 
-    # numberOfRoutes = len(output)
     routes = output['data']
     routes = sorted(routes, key=lambda x: convert(x["fly_duration"]))
 
-    # print(routes)
     return routes[:min(5, len(routes))]
 
-def main():
-    print(getGroundRoutes("paris_fr", "berlin_de", "29/02/2020"))
-
-if __name__ == "__main__":
-    main()
-
+# def main():
+#     print(getGroundRoutes("paris_fr", "berlin_de", "29/02/2020"))
+#
+# if __name__ == "__main__":
+#     main()
+#
