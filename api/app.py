@@ -89,8 +89,23 @@ def flight():
         return jsonify(routes), 200
 
     except Exception as e:
-        return f"An Error Occured: {e}"
+        return f"An Error Occurred: {e}"
 
+@app.route('/ground')
+def ground():
+    try:
+        fromPlace = request.args.get('from')
+        toPlace = request.args.get('to')
+        date = request.args.get('date')
+        vehicleType = "train,bus"
+
+        routes = getFlightRoutes(fromPlace, toPlace, date)
+        routes = list(map(lambda route: [route, getRouteFootprint(route["route"], vehicleType)], routes))
+
+        return jsonify(routes), 200
+
+    except Exception as e:
+        return f"An Error Occurred: {e}"
 
 
 

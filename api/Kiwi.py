@@ -37,8 +37,18 @@ def getFlightRoutes(fromPlace, toPlace, date):
 #     print(output["data"][i]["route"][0]["flyFrom"])
 
 
-def trainRoutes(goingFrom, goingTo):
-    response = requests.get('https://api.skypicker.com/flights?fly_from=paris_fr&fly_to=berlin_de&v=3&vehicle_type=train,bus&date_from=29/02/2020&nights_in_dst_from=6&nights_in_dst_to=6&partner=picky')
+def getGroundRoutes(goingFrom, goingTo, date):
+    fromCountry_response = requests.get("https://api.skypicker.com/locations?term=" + goingFrom + "&locations_types=station,%20bus_station&sort=rank")
+    fromCountry_output = fromCountry_response.json()
+
+    toCountry_response = requests.get("https://api.skypicker.com/locations?term=" + goingTo + "&locations_types=station,%20bus_station&sort=rank")
+    toCountry_output = toCountry_response.json()
+
+    # Takes the most common station in that city
+    fromCode = fromCountry_output["locations"][0]["code"]
+    toCode = toCountry_output["locations"][0]["code"]
+
+    response = requests.get("https://api.skypicker.com/flights?fly_from=" + fromCode + "&fly_to=" + toCode + "&v=3&vehicle_type=train,bus" + "&date_from=" + date + "&date_to=" + date + "&partner=picky")
     output = response.json();
 
     # numberOfRoutes = len(output)
@@ -49,7 +59,8 @@ def trainRoutes(goingFrom, goingTo):
     return routes[:min(5, len(routes))]
 
 def main():
-    print(trainRoutes("London", "Berlin"))
+    print(getGroundRoutes("paris_fr", "berlin_de", "29/02/2020"))
 
 if __name__ == "__main__":
     main()
+
