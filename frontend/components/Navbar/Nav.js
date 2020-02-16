@@ -5,7 +5,9 @@ import './Nav.css';
 const Nav = () => (
   <nav className="Nav-container">
     <div className="Nav-logo">
-      <h1>Logo Here</h1>
+
+      <img src="https://files.slack.com/files-pri/TSL5FDQG3-FTPHD2E9G/bee_logo.png" />
+      <h1>ecoTravel</h1>
     </div>
     <ul className="Nav-items">
       <li>Hello</li>

@@ -25,14 +25,14 @@
 
 .JourneyCard-container button {
     width: 100px;
-    background: lightgray;
+    background: rgba(149, 193, 76, 0.5);
     border: none;
     height: 100%;
     transition: all 0.4s ease 0s;
 }
 
 .JourneyCard-container button:hover {
-    background: grey;
+    background: rgba(149, 193, 76, 1);
     cursor: pointer;
 }
 
