@@ -1,5 +1,27 @@
 .Search-container {
+}
+
+
+.Search-cards-container {
     text-align: center;
     width: 100%;
     display: block;
+    background: lightblue;
+}
+
+.Search-sidebar {
+    width: 300px;
+    height: 80vh;
+    position: fixed;
+    right: 0;
+    background: rgba(149, 193, 76, 0.5);
+}
+
+.Search-sidebar div {
+    padding-left: 40px;
+    padding-bottom: 80px;
+}
+
+.Search-total {
+    margin-top: 100px;
 }
