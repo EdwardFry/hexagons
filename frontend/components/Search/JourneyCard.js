@@ -10,6 +10,7 @@ class JourneyCard extends Component {
             showChanges: false
         }
         this.handleChangesClick = this.handleChangesClick.bind(this);
+        console.log(this.props.data)
     }
 
     handleChangesClick(e) {
@@ -19,6 +20,8 @@ class JourneyCard extends Component {
     }
 
     render() {
+        let outTime = Math.floor(Math.random() * 18)
+        let inTime = outTime + Math.floor((Math.random() * 2) + 1)
         let changes
         if (this.state.showChanges === false) {
             changes
@@ -26,17 +29,9 @@ class JourneyCard extends Component {
             changes = <div className="JourneyCard-changes-container">
                 <p>Changes for the journey</p>
                 <ul>
-                    <li>Departure: London | 18:00</li>
+                    <li>Departure: {this.props.data[0].cityFrom} | 18:00</li>
                     <KeyboardArrowDown />
-                    <li>blah</li>
-                    <KeyboardArrowDown />
-                    <li>blah</li>
-                    <KeyboardArrowDown />
-                    <li>blah</li>
-                    <KeyboardArrowDown />
-                    <li>blah</li>
-                    <KeyboardArrowDown />
-                    <li>blah</li>
+                    <li>{this.props.data[0].cityTo}</li>
                 </ul>
             </div>
         }
@@ -46,10 +41,12 @@ class JourneyCard extends Component {
             <div className="JourneyCard-container">
                 <div>
                     <div className="JourneyCard-info-container">
-                        <p>15:00 -> 17:00</p>
-                        <button onClick={this.handleChangesClick}>Changes: 4</button>
-                        <p>Price: £50</p>
-                        <p>CO2 Footprint: 200</p>
+                        <p>Airline: {this.props.data[0].airlines}</p>
+                        <p>Availability: {this.props.data[0].availability.seats}</p>
+                        <p>{outTime}:00 -> {inTime}:00</p>
+                        <button onClick={this.handleChangesClick}>Transfers: 0</button>
+                        <p>Price: £{this.props.data[0].price}</p>
+                        <p>CO2: {Math.floor(this.props.data[1])}</p>
                         <button>Book</button>
                     </div>
                     {changes}
