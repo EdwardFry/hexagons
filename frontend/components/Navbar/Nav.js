@@ -1,5 +1,5 @@
 import React from 'react'
-
+import Link from 'next/link'
 import './Nav.css';
 
 const Nav = () => (
@@ -10,10 +10,9 @@ const Nav = () => (
       <h1>FlyLite</h1>
     </div>
     <ul className="Nav-items">
-      <li>Hello</li>
-      <li>About</li>
-      <li>Search</li>
-      <li>Login</li>
+      <Link href="/"><li>Home</li></Link>
+      <Link href="/search"><li>Search</li></Link>
+      <Link href="blog"><li>Blog</li></Link>
     </ul>
   </nav>
 )

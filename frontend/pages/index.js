@@ -2,12 +2,13 @@ import React from 'react';
 import Nav from '../components/Navbar/Nav';
 import SearchPopUp from '../components/Search/SearchPopUp/SearchPopUp';
 
-import '../main.css';
+import '../components/Landing.css';
 
 const Home = () => (
   <div>
     <Nav />
-    <SearchPopUp />
+    <div class="Landing">
+    </div>
   </div>
 )
 
