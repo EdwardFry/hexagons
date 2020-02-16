@@ -7,7 +7,7 @@ import '../main.css';
 const Home = () => (
   <div>
     <Nav />
-    <SearchPopUp />
+    <Home />
   </div>
 )
 
